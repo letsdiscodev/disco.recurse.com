@@ -47,7 +47,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "samplesite.urls"
+ROOT_URLCONF = "discorecurse.urls"
 
 TEMPLATES = [
     {
@@ -65,7 +65,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "samplesite.wsgi.application"
+WSGI_APPLICATION = "discorecurse.wsgi.application"
 
 
 # Database
