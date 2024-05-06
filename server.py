@@ -37,7 +37,6 @@ def oauth_redirect():
         "token": token,
         "user": user,
     }
-    # redirect to /dashboard
     return redirect("/dashboard")
 
 
