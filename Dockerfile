@@ -2,4 +2,4 @@ FROM python:3.12.1
 ADD . /code
 WORKDIR /code
 RUN pip install -r requirements.txt
-CMD ["bin/serve.sh"]
+CMD ["python", "server.py"]
