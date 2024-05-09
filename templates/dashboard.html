@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recurse disco Community Server</title>
+    <style>
+    body {
+        line-height: 1.4;
+        font-size: 16px;
+        padding: 0 10px;
+        margin: 50px auto;
+        max-width: 650px;
+    }
+
+    #maincontent {
+        max-width: 42em;
+        margin: 15 auto;
+
+    }
+    </style>
+</head>
+
+<body>
+    <div id="maincontent" style="margin-top:70px">
+        <h1>Recurse disco Community Server</h1>
+        <h3>Welcome {{ user.first_name }}!!</h3>
+        <hr style="margin-bottom:40px;">
+
+        {% if not found_api_key and not found_invite_url %}
+            An error happened. Please contact <a href="mailto:lepetitg@gmail.com">Greg Sadetsky</a>.
+        {% endif %}
+
+        found_api_key: {{ found_api_key }}<br />
+        found_invite_url: {{ found_invite_url }}<br />
+        <hr style="margin-top:50px;">
+        <div style="display: flex;justify-content: space-between;">
+            <div>Done? <a href='/logout'>Logout!</a></div>
+            <div>Questions, comments? <a href="mailto:lepetitg@gmail.com">Contact Greg</a>.</div>
+        </div>
+    </div>
+</body>
+
+</html>

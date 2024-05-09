@@ -3,6 +3,10 @@
     "services": {
         "web": {
             "port": 8080
-        }
+        },
+        "volumes": [{
+            "name": "sqlite-data",
+            "destinationPath": "/sqlitedata"
+        }]
     }
 }
