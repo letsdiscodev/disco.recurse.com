@@ -1,12 +1,17 @@
 {
     "version": "1.0",
-    "services": {
-        "web": {
-            "port": 8080
-        },
-        "volumes": [{
-            "name": "sqlite-data",
-            "destinationPath": "/sqlitedata"
-        }]
+    "services":
+    {
+        "web":
+        {
+            "port": 8080,
+            "volumes":
+            [
+                {
+                    "name": "sqlite-data",
+                    "destinationPath": "/sqlitedata"
+                }
+            ]
+        }
     }
 }
