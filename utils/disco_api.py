@@ -2,6 +2,8 @@ import os
 
 import requests
 
+print("os.environ", os.environ)
+
 DISCO_HOST = os.environ["DISCO_HOST"]
 DISCO_API_KEY = os.environ["DISCO_API_KEY"]
 
