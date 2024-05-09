@@ -18,7 +18,8 @@ class InviteAlreadyExistsForUser(DiscoApiError):
     pass
 
 
-def _query(url, method, json_post_body=None):
+def _query(api_url, method, json_post_body=None):
+    url = f"https://{DISCO_HOST}{api_url}"
     if method == "GET":
         r = requests.get(
             url,
@@ -45,15 +46,13 @@ def _query(url, method, json_post_body=None):
 
 
 def get_api_keys():
-    query_url = "/api/api-keys"
-    return _query(f"https://{DISCO_HOST}{query_url}", "GET")
+    return _query("/api/api-keys", "GET")
 
 
 def generate_invite_get_id(recurse_user_id):
-    query_url = "/api/api-key-invites"
     body = {"name": f"recurse-user-{recurse_user_id}"}
     try:
-        return _query(f"{DISCO_HOST}{query_url}", "POST", json_post_body=body)
+        return _query("/api/api-key-invites", "POST", json_post_body=body)
     except DiscoApiError as e:
         if (
             e.status_code == 422
