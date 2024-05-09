@@ -2,8 +2,8 @@ import os
 
 import requests
 
-print("os.environ", os.environ)
-
+# set in .env on dev, and automatically by the environment on prod
+# does NOT include the protocol i.e. is just "example.com", not "https://example.com"
 DISCO_HOST = os.environ["DISCO_HOST"]
 DISCO_API_KEY = os.environ["DISCO_API_KEY"]
 
@@ -46,7 +46,7 @@ def _query(url, method, json_post_body=None):
 
 def get_api_keys():
     query_url = "/api/api-keys"
-    return _query(f"{DISCO_HOST}{query_url}", "GET")
+    return _query(f"https://{DISCO_HOST}{query_url}", "GET")
 
 
 def generate_invite_get_id(recurse_user_id):
