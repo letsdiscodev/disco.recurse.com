@@ -161,3 +161,5 @@ cython_debug/
 
 .DS_Store
 ./db.sqlite3
+
+.env.prod
