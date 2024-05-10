@@ -11,13 +11,19 @@
         font-size: 16px;
         padding: 0 10px;
         margin: 50px auto;
-        max-width: 650px;
+        max-width: 850px;
     }
 
     #maincontent {
-        max-width: 42em;
         margin: 15 auto;
 
+    }
+
+    span.code {
+        font-family: monospace;
+        font-size: 1.1rem;
+        padding-left: 3px;
+        padding-right: 3px;
     }
     </style>
 </head>
@@ -29,15 +35,33 @@
         <hr style="margin-bottom:40px;">
 
         {% if not found_api_key and not found_invite_url %}
-            An error happened. Please contact <a href="mailto:lepetitg@gmail.com">Greg Sadetsky</a>.
+            <div>An error happened. Please contact <a href="mailto:lepetitg@gmail.com">Greg Sadetsky</a>.</div>
         {% endif %}
 
-        found_api_key: {{ found_api_key }}<br />
-        found_invite_url: {{ found_invite_url }}<br />
+        {% if found_api_key %}
+            <div>- You are all set up! Now run <span class="code">disco github:apps:add</span> to connect your github account.</div>
+            <div>- Pick which repos you will want to manage via disco (you can change them later).</div>
+            <div>- As this is a community server, please note that everyone (from Recurse) will be able to see the repos you manage via disco.</div>
+            <div style="margin-top:30px;margin-bottom:10px">- Finally, deploy projects to the community server using:</div>
+            <div><span class="code">disco projects:add --github USER/REPO --name PROJECTNAME --domain DOMAIN.COM</span></div>
+            <div style="margin-top:10px">replacing all of the uppercase values.</div>
+            <div style="margin-top:30px;">Need inspiration? Fork this <a href="https://github.com/letsdiscodev/example-flask-site/">sample repo</a>!</div>
+        {% endif %}
+
+        {% if found_invite_url %}
+            <div>- To setup disco, please first <a href="https://docs.letsdisco.dev/get-started/install-the-cli">install the CLI</a> on your computer.</div>
+            <div style="margin-top:20px;margin-bottom:20px;">- Then, run this command - this will generate an API token for you:</div>
+            <pre>disco invite:accept {{ found_invite_url }}</pre>
+            <div style="margin-top:20px;">- Once you've done these steps, reload this page!</div>
+        {% endif %}
+
         <hr style="margin-top:50px;">
         <div style="display: flex;justify-content: space-between;">
             <div>Done? <a href='/logout'>Logout!</a></div>
-            <div>Questions, comments? <a href="mailto:lepetitg@gmail.com">Contact Greg</a>.</div>
+            <div style="text-align: right;">
+                <div><a href="https://github.com/letsdiscodev/">github</a> • <a href="https://docs.letsdisco.dev/">disco docs</a></div>
+                <div>Questions, comments? <a href="mailto:lepetitg@gmail.com">Contact Greg</a></div>
+            </div>
         </div>
     </div>
 </body>
