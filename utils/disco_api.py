@@ -7,8 +7,6 @@ import requests
 DISCO_HOST = os.environ["DISCO_HOST"]
 DISCO_API_KEY = os.environ["DISCO_API_KEY"]
 
-print("DISCO_HOST", DISCO_HOST)
-
 
 class DiscoApiError(Exception):
     def __init__(self, message, status_code=None):
@@ -22,7 +20,6 @@ class InviteAlreadyExistsForUser(DiscoApiError):
 
 def _query(api_url, method, json_post_body=None):
     url = f"https://{DISCO_HOST}{api_url}"
-    print("url", url)
     if method == "GET":
         r = requests.get(
             url,

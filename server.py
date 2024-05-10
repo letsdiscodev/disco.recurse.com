@@ -4,8 +4,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import os
-import random
-import sqlite3
 
 from flask import Flask, redirect, render_template, session
 
@@ -14,11 +12,7 @@ from utils.db import (
     insert_invite_for_recurse_user_id,
     remove_invite_for_recurse_user_id,
 )
-from utils.disco_api import (
-    InviteAlreadyExistsForUser,
-    generate_invite_get_id,
-    get_api_keys,
-)
+from utils.disco_api import generate_invite_get_id, get_api_keys
 from utils.rc_api import get_user_profile
 from utils.rc_oauth_utils import get_rc_oauth
 
@@ -38,7 +32,6 @@ def dashboard():
 
     disco_api_keys = get_api_keys()["apiKeys"]
 
-    print("disco_api_keys", disco_api_keys)
     # try to find the user in the existing api keys
     looking_for_api_key_name = f"recurse-user-{session['rc_user']['user']['id']}"
     disco_api_keys = [
@@ -86,15 +79,6 @@ def oauth_redirect():
         "user": user,
     }
     return redirect("/dashboard")
-
-
-# @app.route("/generate_invite")
-# def generate_invite_view():
-#     if session.get("rc_user") is None:
-#         return get_rc_oauth(app).authorize_redirect(os.environ["RC_OAUTH_REDIRECT_URI"])
-
-#     generate_invite(session["rc_user"]["user"]["id"])
-#     return redirect("/dashboard")
 
 
 @app.route("/logout")
