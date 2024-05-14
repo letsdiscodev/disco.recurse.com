@@ -14,10 +14,6 @@ class DiscoApiError(Exception):
         self.status_code = status_code
 
 
-class InviteAlreadyExistsForUser(DiscoApiError):
-    pass
-
-
 def _query(api_url, method, json_post_body=None):
     url = f"https://{DISCO_HOST}{api_url}"
     if method == "GET":
@@ -51,14 +47,4 @@ def get_api_keys():
 
 def generate_invite_get_id(recurse_user_id):
     body = {"name": f"recurse-user-{recurse_user_id}"}
-    try:
-        return _query("/api/api-key-invites", "POST", json_post_body=body)
-    except DiscoApiError as e:
-        if (
-            e.status_code == 422
-            and str(e) == "API Key name already used in other invite"
-        ):
-            raise InviteAlreadyExistsForUser(
-                "API Key name already used in other invite"
-            )
-        raise e
+    return _query("/api/api-key-invites", "POST", json_post_body=body)

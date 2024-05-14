@@ -7,11 +7,6 @@ import os
 
 from flask import Flask, redirect, render_template, session
 
-from utils.db import (
-    get_invite_for_recurse_user_id,
-    insert_invite_for_recurse_user_id,
-    remove_invite_for_recurse_user_id,
-)
 from utils.disco_api import generate_invite_get_id, get_api_keys
 from utils.rc_api import get_user_profile
 from utils.rc_oauth_utils import get_rc_oauth
@@ -38,25 +33,19 @@ def dashboard():
         key for key in disco_api_keys if key["name"] == looking_for_api_key_name
     ]
 
+    # we'll either find the existing api key...
     found_api_key = None
-    if disco_api_keys:
-        found_api_key = disco_api_keys[0]
-        remove_invite_for_recurse_user_id(session["rc_user"]["user"]["id"])
-
+    # ... or we'll generate an invite url
     found_invite_url = None
-    if not found_api_key:
-        # is there an existing invite in the db?
-        found_invite = get_invite_for_recurse_user_id(session["rc_user"]["user"]["id"])
-        if found_invite:
-            found_invite_url = found_invite["invite_url"]
 
-    # if no api key found and no invite in the db, generate new invite and store it
-    if not found_api_key and not found_invite_url:
+    if disco_api_keys:
+        # found the key!
+        found_api_key = disco_api_keys[0]
+    else:
+        # generate an invite! it's ok if we re-generate an invite
+        # for the same user, the server now supports this.
         found_invite = generate_invite_get_id(session["rc_user"]["user"]["id"])
         found_invite_url = found_invite["apiKeyInvite"]["url"]
-        insert_invite_for_recurse_user_id(
-            session["rc_user"]["user"]["id"], found_invite_url
-        )
 
     return render_template(
         "dashboard.html",
