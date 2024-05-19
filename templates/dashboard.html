@@ -4,69 +4,84 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Recurse disco Community Server</title>
-    <style>
-    body {
-        line-height: 1.4;
-        font-size: 16px;
-        padding: 0 10px;
-        margin: 50px auto;
-        max-width: 850px;
-    }
-
-    #maincontent {
-        margin: 15 auto;
-
-    }
-
-    span.code {
-        font-family: monospace;
-        font-size: 1.1rem;
-        padding-left: 3px;
-        padding-right: 3px;
-    }
-    </style>
+    <title>Dashboard | Recurse disco Community Server</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/zero-md@3?register"></script>
+    <link rel="stylesheet" href="/static/site.css">
 </head>
 
 <body>
-    <div id="maincontent" style="margin-top:70px">
-        <h1>Recurse disco Community Server</h1>
-        <h3>Welcome {{ user.first_name }}!!</h3>
-        <hr style="margin-bottom:40px;">
+<zero-md>
+<script type="text/markdown">
+<h1>
+  <img src="/static/disco.svg" style="width:32px;">
+  Recurse disco Community Web Server
+</h1>
 
-        {% if not found_api_key and not found_invite_url %}
-            <div>An error happened. Please contact <a href="mailto:lepetitg@gmail.com">Greg Sadetsky</a>.</div>
-        {% endif %}
+### Welcome, {{ user.first_name }}!!
 
-        {% if found_api_key %}
-            <div>- You are all set up! Now run <span class="code">disco github:apps:add</span> to connect your GitHub account.</div>
-            <div>- Pick which repos you want to manage using disco (you can change them later).</div>
-            <div>- As this is a community server, please note that everyone (from Recurse) will be able to see the list of repos you chose to manage via that GitHub disco app.</div>
-            <div style="margin-top:30px;margin-bottom:10px">- Finally, deploy projects to the community server.</div>
-            <div style="margin-top:10px;margin-bottom:20px;">-- First, point a domain name or subdomain that you will be using for your project to the community server by creating a <span class="code">CNAME</span> record. Point that record to <span class="code">recurse.letsdisco.dev</span></div>
-            <div>Then, run:</div>
-            <div><span class="code">disco projects:add --github USER/REPO --name PROJECTNAME --domain DOMAIN.COM</span></div>
-            <div style="margin-top:10px">replacing all of the uppercase values.</div>
-            <div style="margin-top:30px;">Need inspiration? Fork this <a href="https://github.com/letsdiscodev/example-flask-site/">sample repo</a>!</div>
-            <div style="margin-top:20px;">And <a href="https://docs.letsdisco.dev/">head to the docs</a> to learn about all the kinds of servers you can deploy.
-        {% endif %}
+---
 
-        {% if found_invite_url %}
-            <div>- To setup disco, please first <a href="https://docs.letsdisco.dev/get-started/install-the-cli">install the CLI</a> on your computer.</div>
-            <div style="margin-top:20px;margin-bottom:20px;">- Then, run this command - this will generate an API token for you:</div>
-            <pre>disco invite:accept {{ found_invite_url }}</pre>
-            <div style="margin-top:20px;">- Once you've done these steps, reload this page!</div>
-        {% endif %}
+{% if not found_api_key and not found_invite_url %}
+An error happened. Please contact [Greg Sadetsky](mailto:lepetitg@gmail.com).
+{% endif %}
 
-        <hr style="margin-top:50px;">
-        <div style="display: flex;justify-content: space-between;">
-            <div>Done? <a href='/logout'>Logout!</a></div>
-            <div style="text-align: right;">
-                <div><a href="https://github.com/letsdiscodev/">github</a> • <a href="https://docs.letsdisco.dev/">disco docs</a></div>
-                <div>Questions, comments? <a href="mailto:lepetitg@gmail.com">Contact Greg</a></div>
-            </div>
-        </div>
+{% if found_api_key %}
+- You are all set up! Now run `disco github:apps:add` to connect your GitHub account.
+- Pick which repos you want to manage using disco (you can change them later).
+- Finally, deploy projects to the community server.
+  - First, point a domain name or subdomain that you will be using for your project to the community server by creating a `CNAME` record. Point that record to `recurse.letsdisco.dev`
+  - Then, run:
+
+`disco projects:add --github USER/REPO --name PROJECTNAME --domain EXAMPLE.COM`
+
+(replacing all of the uppercase values)
+
+**Need inspiration?**
+
+Fork this [sample Flask repo](https://github.com/letsdiscodev/example-flask-site/)
+
+And [head to the docs](https://docs.letsdisco.dev/) to learn about all the kinds of web projects you can deploy
+
+**And a few important housekeeping notes!**
+
+- As this is a shared community server, please note that everyone (from Recurse) will be able to see the list of repos you chose to manage via that GitHub disco app.
+- Emma Smith very aptly said that on this community server, "the walls are made of glass." Don't store / host anything you wouldn't want somebody else to see.
+- Lastly, please abide by Recurse Community standards. If you're hosting something that you would share with other Recursers, it's all good. If you want to build a site to find the best batteries to throw into the ocean, please maybe don't. xx
+
+{% endif %}
+
+{% if found_invite_url %}
+- To setup disco, please first install the CLI using the following command (for Linux and macOS):
+
+```bash
+curl https://cli-assets.letsdisco.dev/install.sh | sh
+```
+
+(if you prefer to install it another way, [head to the docs](https://docs.letsdisco.dev/get-started/install-the-cli))
+
+- Then, run the following command to join the community server:
+
+<pre>
+disco invite:accept {{ found_invite_url }}
+</pre>
+
+<a href="javascript:;" onclick="navigator.clipboard.writeText('disco invite:accept {{ found_invite_url }}'); this.innerHTML='copied!'">click here to copy the command!</a>
+
+- Once you've done these steps, reload this page!
+{% endif %}
+
+---
+
+<div style="display: flex;justify-content: space-between;">
+    <div>Done? <a href='/logout'>Log out</a></div>
+    <div style="text-align: right;">
+        <div><a href="https://docs.letsdisco.dev/">disco docs</a></div>
+        <div>Questions, comments? <a href="mailto:lepetitg@gmail.com">Contact Greg</a></div>
     </div>
+</div>
+
+</script>        
+</zero-md>
 </body>
 
 </html>
