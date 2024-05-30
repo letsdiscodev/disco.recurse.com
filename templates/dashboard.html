@@ -28,9 +28,11 @@ An error happened. Please contact [Greg Sadetsky](mailto:lepetitg@gmail.com).
 {% if found_api_key %}
 - You are all set up! Now run `disco github:apps:add` to connect your GitHub account.
 - Pick which repos you want to manage using disco (you can change them later).
-- Finally, deploy projects to the community server.
-  - First, point a domain name or subdomain that you will be using for your project to the community server by creating a `CNAME` record. Point that record to `recurse.letsdisco.dev`
-  - Then, run:
+- Finally, deploy projects to the community server:
+  - You will need a domain name for your project. You have 2 options:
+      - OPTION 1 -- you can use any available subdomain on `ondis.co` -- for example `coolproject.ondis.co` or `ilovecats.ondis.co` -- if you get an error that the domain is already used, think of another domain :-) -- please don't use your first name as the subdomain just to make sure that we have enough names to go around
+      - OPTION 2 -- point your own domain name or subdomain to the community server by creating a `CNAME` record. Point that record to `recurse.letsdisco.dev`
+- Then, run:
 
 `disco projects:add --github USER/REPO --name PROJECTNAME --domain EXAMPLE.COM`
 
@@ -44,9 +46,9 @@ And [head to the docs](https://docs.letsdisco.dev/) to learn about all the kinds
 
 **And a few important housekeeping notes!**
 
-- As this is a shared community server, please note that everyone (from Recurse) will be able to see the list of repos you chose to manage via that GitHub disco app.
+- As this is a shared community server, please note that everyone (from Recurse) will be able to see the list of repos you chose to manage via that GitHub disco app you set up.
 - Emma Smith very aptly said that on this community server, "the walls are made of glass." Don't store / host anything you wouldn't want somebody else to see.
-- Lastly, please abide by Recurse Community standards. If you're hosting something that you would share with other Recursers, it's all good. If you want to build a site to find the best batteries to throw into the ocean, please maybe don't. xx
+- Lastly, please abide by Recurse Community standards. If you want to build a site to find the best batteries to throw into the ocean, please maybe don't. But if you're hosting something that you would share with other Recursers, then it's all good!! ♡
 
 {% endif %}
 
