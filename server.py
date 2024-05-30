@@ -55,6 +55,17 @@ def dashboard():
     )
 
 
+@app.route("/htop")
+def htop():
+    if session.get("rc_user") is None:
+        return get_rc_oauth(app).authorize_redirect(os.environ["RC_OAUTH_REDIRECT_URI"])
+
+    # open file which is in a remote location
+    with open("/disco-recurse-htop/htop.html") as f:
+        data = f.read()
+    return data
+
+
 @app.route("/oauth_redirect")
 def oauth_redirect():
     rc_oauth = get_rc_oauth(app)
@@ -74,14 +85,6 @@ def oauth_redirect():
 def logout():
     session["rc_user"] = None
     return redirect("/")
-
-
-@app.route("/test")
-def test():
-    # open file which is in a remote location
-    with open("/disco-recurse-htop/test.html") as f:
-        data = f.read()
-    return data
 
 
 if __name__ == "__main__":
