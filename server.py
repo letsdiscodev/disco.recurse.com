@@ -76,5 +76,13 @@ def logout():
     return redirect("/")
 
 
+@app.route("/test")
+def test():
+    # open file which is in a remote location
+    with open("/disco-recurse-htop/test.html") as f:
+        data = f.read()
+    return data
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
