@@ -1,4 +1,6 @@
-# RC3 web ui!
+# disco.recurse.com
+
+disco community server management!
 
 ## how to dev
 
@@ -6,4 +8,4 @@
 -- very tldr: start the server, start ngrok, have an oauth dev app pointing to ngrok, and have a recurse domain for the dev app as well
 -- in prod, it's all the same: have an oauth prod app pointing to the server, and have a recurse domain for the prod app
 
-- this is a flask app; make a python venv, activate it, install requirements, run it using `python server.py`# rc3-web-ui
+- this is a flask app; make a python venv, activate it, install requirements, run it using `python server.py`
