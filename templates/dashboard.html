@@ -26,23 +26,26 @@ An error happened. Please contact [Greg Sadetsky](mailto:lepetitg@gmail.com).
 {% endif %}
 
 {% if found_api_key %}
-- You are all set up! Now run `disco github:apps:add` to connect your GitHub account.
-- Pick which repos you want to manage using disco (you can change them later).
-- Finally, deploy projects to the community server:
-  - You will need a domain name for your project. You have 2 options:
-      - OPTION 1 -- you can use any available subdomain on `rcdis.co` -- for example `coolproject.rcdis.co` or `ilovecats.rcdis.co` -- if you get an error that the domain is already used, think of another domain :-) -- please don't use your first name as the subdomain just to make sure that we have enough names to go around
-      - OPTION 2 -- point your own domain name or subdomain to the community server by creating a `CNAME` record. Point that record to `recurse.letsdisco.dev`
-- Then, run:
+
+**You're all set up!! Now...**
+
+0. You'll need a project to deploy -- you can fork this [sample repo](https://github.com/letsdiscodev/example-flask-site/).
+1. Run `disco github:apps:add` to connect your GitHub account.
+2. Pick which repos you want to manage using disco (you can always change).
+3. Finally, deploy a project to the community server:
 
 `disco projects:add --github USER/REPO --name PROJECTNAME --domain EXAMPLE.COM`
 
-(replacing all of the uppercase values)
+- Replace all of the uppercase values:
+  - the `USER/REPO` should be the GitHub repo you want to deploy (e.g. `johnsmith/hello`)
+  - the `PROJECTNAME` can be any short name to identify your project
+  - for the domain, you can use `ANYTHING.rcdis.co` (replacing ANYTHING, obviously). If you get an error, it means that the domain is already used by someone! Just think of something else.
+
+---
 
 **Need inspiration?**
 
-Fork this [sample Flask repo](https://github.com/letsdiscodev/example-flask-site/)
-
-And [head to the docs](https://docs.letsdisco.dev/) to learn about all the kinds of web projects you can deploy
+[Head to the docs](https://docs.letsdisco.dev/) to learn about all the kinds of web projects you can deploy
 
 **And a few important housekeeping notes!**
 
@@ -53,7 +56,7 @@ And [head to the docs](https://docs.letsdisco.dev/) to learn about all the kinds
 {% endif %}
 
 {% if found_invite_url %}
-- To setup disco, please first install the CLI using the following command (for Linux and macOS):
+1. To setup disco, first install the CLI using the following command (for Linux and macOS):
 
 ```bash
 curl https://cli-assets.letsdisco.dev/install.sh | sh
@@ -61,23 +64,23 @@ curl https://cli-assets.letsdisco.dev/install.sh | sh
 
 (if you prefer to install it another way, [head to the docs](https://docs.letsdisco.dev/get-started/install-the-cli))
 
-- Then, run the following command to join the community server:
+2. Then, run the following command to join the community server:
 
 <pre>
 disco invite:accept {{ found_invite_url }}
 </pre>
 
-<a href="javascript:;" onclick="navigator.clipboard.writeText('disco invite:accept {{ found_invite_url }}'); this.innerHTML='copied!'">click here to copy the command!</a>
+(<a href="javascript:;" onclick="navigator.clipboard.writeText('disco invite:accept {{ found_invite_url }}'); this.innerHTML='copied!'">click here to copy the command!</a>)
 
-- Once you've done these steps, reload this page!
+3. Once you've done these steps, **reload this page**!
 {% endif %}
 
 ---
 
 <div style="display: flex;justify-content: space-between;">
     <div>
+      <div>Curious? <a href="/htop">See the htop!</a></div>
       <div>Done? <a href='/logout'>Log out</a></div>
-      <div>NEW! <a href="/htop">See the htop...!!</a></div>
     </div>
     <div style="text-align: right;">
         <div><a href="https://docs.letsdisco.dev/">disco docs</a></div>
